@@ -15,6 +15,10 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <div class="upload-page mt-3">
+                        <a href="{{ url('/upload') }}">GO TO UPLOAD</a>
+                    </div>
                 </div>
             </div>
         </div>
