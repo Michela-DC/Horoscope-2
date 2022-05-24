@@ -31,7 +31,11 @@
             </div>
             
         </form>
+        
+        <div class="redirect-home">
+            <a href="{{ url('/') }}">Go to main page</a>
+        </div>
     </div>
-
+    
 </body>
 </html>
