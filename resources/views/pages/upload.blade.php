@@ -10,16 +10,45 @@
 <body>
 
     <div class="container my-5">
-        <form action="{{url('/upload')}}" method="post" enctype="multipart/form-data">
+
+        <form action="{{url('/upload')}}" method="post" enctype="multipart/form-data" class="mb-5">
             @csrf
 
             <div class="form-group">
-                <div class="form-group bg-white">
-                    <input id="csv-file" type="file" name="csv-file" class="@error('csv-file') is-invalid @enderror">
+                <h4 class="mb-3">Upload here your horoscopes file: </h4>
+
+                <div class="form-group bg-white mb-4">
+                    <input id="horoscopes-file" type="file" name="horoscopes-file" class="@error('horoscopes-file') is-invalid @enderror">
                 </div>
-                <input class="btn btn-primary mb-3" type="submit" value="Upload csv file" name="submit">
+
+                <input class="btn btn-primary text-white mb-4" type="submit" value="Upload horoscopes file" name="submit">
     
-                @error('csv-file')
+                @error('horoscopes-file')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror    
+
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+            </div>
+            
+        </form>
+
+        <form action="{{url('/sign')}}" method="post" enctype="multipart/form-data" class="mb-5">
+            @csrf
+
+            <div class="form-group">
+                <h4 class="mb-3">Upload here your signs file: </h4>
+
+                <div class="form-group bg-white mb-4">
+                    <input id="signs-file" type="file" name="signs-file" class="@error('signs-file') is-invalid @enderror">
+                </div>
+
+                <input class="btn btn-primary text-white mb-4" type="submit" value="Upload signs file" name="submit">
+    
+                @error('signs-file')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror    
 
@@ -33,7 +62,7 @@
         </form>
         
         <div class="redirect-home">
-            <a href="{{ url('/') }}">Go to main page</a>
+            <a style="font-size:1.3em" href="{{ url('/') }}">Go to main page</a>
         </div>
     </div>
     

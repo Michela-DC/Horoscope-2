@@ -36,12 +36,12 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        // FARE VALIDAZIONE E CONTROLLI
+        
         $request->validate([
-            'csv-file' => 'required|mimes:csv,txt',
+            'horoscopes-file' => 'required|mimes:csv,txt',
         ]);
 
-        $upload = $request->file('csv-file');
+        $upload = $request->file('horoscopes-file');
         $filePath = $upload->getRealPath();
 
         $data = file_get_contents($upload);

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
-use App\Upload;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Sign;
 use Illuminate\Http\Request;
 
-class HoroscopeController extends Controller
+class SignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,7 @@ class HoroscopeController extends Controller
      */
     public function index()
     {
-
-        // $horoscopes = Upload::paginate(20);
-        $horoscopes = Upload::paginate(20);
-
-        return response()->json([
-            'horoscopes' => $horoscopes,
-            'success' => true,
-        ]);
+        return view('pages.upload');
     }
 
     /**
@@ -43,16 +35,39 @@ class HoroscopeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'signs-file' => 'required|mimes:csv,txt',
+        ]);
+
+        $upload = $request->file('signs-file');
+        $filePath = $upload->getRealPath();
+
+        $data = file_get_contents($upload);
+
+        $file = fopen($filePath, 'r');
+
+
+        while (($data = fgetcsv($file, 1000, "|")) !== FALSE){
+            
+            $sign = new Sign;
+            $sign->sign = $data[1];
+            $sign->date_from = $data[2];
+            $sign->date_to = $data[3];
+            // dd($sign);
+
+            $sign->save();
+        }
+        
+        return redirect()->route('sign.index')->with('message', 'File uploaded successfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sign $sign)
     {
         //
     }
@@ -60,10 +75,10 @@ class HoroscopeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sign $sign)
     {
         //
     }
@@ -72,10 +87,10 @@ class HoroscopeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sign $sign)
     {
         //
     }
@@ -83,10 +98,10 @@ class HoroscopeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Sign  $sign
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sign $sign)
     {
         //
     }

@@ -22,9 +22,9 @@
 
 <body>
 
-    <header class="p-4">
+    <header class="py-5">
         <div class="container d-flex justify-content-between">
-            <h1 class="w-100 text-center">Welcome to your daily horoscope!</h1>
+            <h1 class="w-100 text-center pl-3">Welcome to your daily horoscope!</h1>
 
             <div class="login-container d-flex flex-column justify-content-center">
                 @if (Route::has('login'))

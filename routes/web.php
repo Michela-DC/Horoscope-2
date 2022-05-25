@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/upload', 'UploadController@index') ->name('upload.index');
 Route::post('/upload', 'UploadController@store');
 
+Route::get('/sign', 'SignController@index') ->name('sign.index');
+Route::post('/sign', 'SignController@store');
+
 Route::fallback(function(){
 
     return view('guest.home');
