@@ -23,24 +23,24 @@
 <body>
 
     <header class="py-5">
-        <div class="container d-flex justify-content-between">
-            <h1 class="w-100 text-center pl-3">Welcome to your daily horoscope!</h1>
-
-            <div class="login-container d-flex flex-column justify-content-center">
+        <div class="container">
+            <div class="login-container text-end mb-3 mx-3">
                 @if (Route::has('login'))
-                    <div>
-                        @auth
-                            <a class="text-decoration-none" href="{{ url('/home') }}">Home</a>
-                        @else
-                            <a class="text-decoration-none" href="{{ route('login') }}">Login</a>
-            
-                            @if (Route::has('register'))
-                                <a class="text-decoration-none" href="{{ route('register') }}">Register</a>
-                            @endif
-                        @endauth
-                    </div>
+                <div>
+                    @auth
+                    <a class="text-decoration-none" href="{{ url('/home') }}">Go to admin home</a>
+                    @else
+                    <a class="text-decoration-none mx-3" href="{{ route('login') }}">Login</a>
+                    
+                    @if (Route::has('register'))
+                    <a class="text-decoration-none" href="{{ route('register') }}">Register</a>
+                    @endif
+                    @endauth
+                </div>
                 @endif
             </div>
+            
+            <h1 class="w-100 text-center pl-3">Welcome to your daily horoscope!</h1>
         </div>
     </header>
 
