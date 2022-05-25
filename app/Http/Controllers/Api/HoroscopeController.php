@@ -15,7 +15,7 @@ class HoroscopeController extends Controller
      */
     public function index()
     {
-        $horoscopes = Upload::limit(12)->get();
+        $horoscopes = Upload::paginate(12);
 
         return response()->json([
             'horoscopes' => $horoscopes,
