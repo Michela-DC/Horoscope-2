@@ -17,12 +17,35 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="root"></div>
 
+    <header class="p-4">
+        <div class="container d-flex justify-content-between">
+            <h1 class="w-100 text-center">Welcome to your daily horoscope!</h1>
+
+            <div class="login-container d-flex flex-column justify-content-center">
+                @if (Route::has('login'))
+                    <div>
+                        @auth
+                            <a class="text-decoration-none" href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a class="text-decoration-none" href="{{ route('login') }}">Login</a>
+            
+                            @if (Route::has('register'))
+                                <a class="text-decoration-none" href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+        </div>
+    </header>
+
+    <div id="root"></div>
+    
     <script src="{{asset('js/front.js')}}"></script>
 </body>
 </html>
