@@ -2,23 +2,17 @@
     <div class="container p-5">
         <div class="searchbar d-flex justify-content-center mb-4">
             <form class="form-inline w-50 d-flex">
-                <input v-model="search" class="form-control mr-sm-2 w-70" type="search" placeholder="Search horoscope by date of birth" aria-label="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                <input v-model="search" class="form-control mr-sm-2 w-70" type="date" aria-label="Search" name="date">
             </form>
         </div>
 
-
-        <div v-if="search != ''">
-            <HoroscopeCard v-for="horoscope in filterBySign" :key="horoscope.id" :horoscopeCard="horoscope"/>
-        </div>
-
-        <div v-else>
+        <div>
             <HoroscopeCard v-for="horoscope in horoscopes" :key="horoscope.id" :horoscopeCard="horoscope"/>
         </div>
 
         <div class="container w-50">
             <ul id="itemList" class="myPagination d-flex align-center">
-                <li class="mx-3" style="cursor:pointer" @click="fetchHoroscopes(n)" v-for="n in lastPage" :key="n">{{ n }}</li>
+                <li class="mx-3" style="cursor:pointer" @click="currentPage = n" v-for="n in lastPage" :key="n">{{ n }}</li>
             </ul>
         </div>
 
@@ -42,19 +36,29 @@ import HoroscopeCard from '../components/HoroscopeCard.vue'
             }
         },
 
+        watch: {
+            currentPage() {
+                this.fetchHoroscopes();
+            },
+            search() {
+                this.fetchHoroscopes();
+            }
+        },
+
         methods: {
-            fetchHoroscopes(page = 1) { 
+            fetchHoroscopes() { 
 
                 axios.get('/api/horoscope', {
                     params: { 
-                        page
+                        page: this.currentPage,
+                        search: this.search
                     }
                 }) 
                 .then( res => {
 
                     this.horoscopes = res.data.horoscopes.data;
                     // console.log(this.horoscopes);
-                    this.currentPage = res.data.horoscopes.current_page;
+                    // this.currentPage = res.data.horoscopes.current_page;
                     // console.log(this.currentPage);
                     this.lastPage = res.data.horoscopes.last_page;
                     // console.log(this.lastPage);

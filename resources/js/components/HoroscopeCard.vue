@@ -7,7 +7,7 @@
 
         <div class="sign-wrapper">
             <span class="info-name text-secondary">Sign: </span>
-            <span class="info-content text-danger">{{horoscopeCard.sign}}</span>
+            <span class="info-content text-danger">{{horoscopeCard.sign.sign}}</span>
         </div>
 
         <div class="text-wrapper">
