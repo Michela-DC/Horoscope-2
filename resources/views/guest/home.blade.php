@@ -22,7 +22,7 @@
 
 <body>
 
-    <header class="py-5">
+    <header class="pt-4 pb-2">
         <div class="container">
             <div class="login-container text-end mb-3 mx-3">
                 @if (Route::has('login'))
@@ -39,8 +39,6 @@
                 </div>
                 @endif
             </div>
-            
-            <h1 class="w-100 text-center pl-3">Welcome to your daily horoscope!</h1>
         </div>
     </header>
 

@@ -45,49 +45,4 @@ class SignController extends Controller
         
         return redirect()->route('upload.index')->with('message', 'File uploaded successfully!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Sign  $sign
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Sign $sign)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Sign  $sign
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sign $sign)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sign  $sign
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Sign $sign)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sign  $sign
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sign $sign)
-    {
-        //
-    }
 }

@@ -25,6 +25,7 @@ class HoroscopeController extends Controller
         if($request->has('search') && !empty($request->search)){
             $birthdate = \Carbon\Carbon::createFromFormat('Y-m-d', $request->search)->year(2000);
             $signs->where('date_from', '<', $birthdate)->where('date_to', '>', $birthdate);
+
         } else {
             return response()->json([
                 'horoscopes' => [], //prendo la relazione 
@@ -35,8 +36,9 @@ class HoroscopeController extends Controller
         $sign = $signs->first();
 
         return response()->json([
+            'sign_icon' => $sign->sign_icon,
             'sign' => $sign->sign,
-            'horoscopes' => $sign->uploads()->orderBy('date')->with('sign')->paginate(20), //prendo la relazione 
+            'horoscopes' => $sign->uploads()->orderBy('date')->with('sign')->paginate(21), //prendo la relazione 
             'success' => true,
         ]);
     }
