@@ -17,8 +17,8 @@ class CreateSignsTable extends Migration
             $table->id();
             $table->string('sign_icon',15);
             $table->string('sign',15);
-            $table->string('date_from');
-            $table->string('date_to');
+            $table->date('date_from');
+            $table->date('date_to');
             $table->timestamps();
         });
     }

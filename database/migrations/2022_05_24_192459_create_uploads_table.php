@@ -15,6 +15,8 @@ class CreateUploadsTable extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             $table->id();
+            // $table->integer('sign_id')->unsigned();
+            // $table->foreign('sign_id')->references('id')->on('signs')->onDelete('cascade');
             $table->text('text'); 
             $table->date('date');
             $table->string('sign', 15);

@@ -17,7 +17,7 @@ class UploadController extends Controller
     public function index()
     {
 
-        $sign = Sign::find(1);
+        // $sign = Sign::find(1);
         // dd($sign);
 
         return view('pages.upload');
@@ -41,6 +41,8 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($sign = Sign::find(1));
         
         $request->validate([
             'horoscopes-file' => 'required|mimes:csv,txt',
@@ -58,7 +60,8 @@ class UploadController extends Controller
             // dd($data);
             $upload = new Upload;
             $upload->text = $data[1];
-            $upload->date = \Carbon\Carbon::createFromFormat('d-m-Y', $data[2])->format('Y-m-d');
+            $upload->text = $data[1];
+            $upload->date = \Carbon\Carbon::createFromFormat('d-m-Y', $data[2]);
             $upload->sign = $data[3];
 
             $upload->save();

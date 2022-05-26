@@ -53,15 +53,22 @@ class SignController extends Controller
 
 
         while (($data = fgetcsv($file, 1000, "|")) !== FALSE){
-            
+
+            // dd($data);
+
+            if(empty($data[0]) || empty($data[1]) || empty($data[2]) || empty($data[3])){
+
+                continue;
+            } 
+
             $sign = new Sign;
             $sign->sign_icon = $data[0];
             $sign->sign = $data[1];
-            $sign->date_from = $data[2];
-            $sign->date_to = $data[3];
-            // dd($sign);
+            $sign->date_from = \Carbon\Carbon::createFromFormat('F d', $data[2])->year(2000);
+            $sign->date_to = \Carbon\Carbon::createFromFormat('F d', $data[3])->year(2000);
 
             $sign->save();
+            
         }
         
         return redirect()->route('sign.index')->with('message', 'File uploaded successfully!');
