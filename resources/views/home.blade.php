@@ -17,7 +17,7 @@
                     {{ __('You are logged in!') }}
 
                     <div class="upload-page mt-3">
-                        <a href="{{ url('/upload') }}">GO TO UPLOAD</a>
+                        <a href="{{ url('/upload') }}">GO TO UPLOADS</a>
                     </div>
                 </div>
             </div>

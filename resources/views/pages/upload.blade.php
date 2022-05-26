@@ -62,7 +62,7 @@
         </form>
         
         <div class="redirect-home">
-            <a style="font-size:1.3em" href="{{ url('/') }}">Go to main page</a>
+            <a style="font-size:1.3em" href="{{ url('/') }}">Go to horoscopes</a>
         </div>
     </div>
     

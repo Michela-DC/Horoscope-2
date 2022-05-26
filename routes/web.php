@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/upload', 'UploadController@index') ->name('upload.index');
-Route::post('/upload', 'UploadController@store');
+Route::post('/upload', 'UploadController@store')->name('upload.store');
 
 Route::get('/sign', 'SignController@index') ->name('sign.index');
 Route::post('/sign', 'SignController@store');
