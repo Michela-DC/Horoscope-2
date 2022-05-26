@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sign;
 use Illuminate\Http\Request;
+use App\Upload;
 
 class SignController extends Controller
 {
@@ -24,7 +25,7 @@ class SignController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,6 +36,10 @@ class SignController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $upload = Upload::find(1);
+        // dd($upload);
+
         $request->validate([
             'signs-file' => 'required|mimes:csv,txt',
         ]);
@@ -50,6 +55,7 @@ class SignController extends Controller
         while (($data = fgetcsv($file, 1000, "|")) !== FALSE){
             
             $sign = new Sign;
+            $sign->sign_icon = $data[0];
             $sign->sign = $data[1];
             $sign->date_from = $data[2];
             $sign->date_to = $data[3];

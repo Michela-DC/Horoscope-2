@@ -15,6 +15,7 @@ class CreateSignsTable extends Migration
     {
         Schema::create('signs', function (Blueprint $table) {
             $table->id();
+            $table->string('sign_icon',15);
             $table->string('sign',15);
             $table->string('date_from');
             $table->string('date_to');

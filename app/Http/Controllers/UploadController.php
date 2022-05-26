@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Sign;
 
 class UploadController extends Controller
 {
@@ -15,6 +16,10 @@ class UploadController extends Controller
      */
     public function index()
     {
+
+        $sign = Sign::find(1);
+        // dd($sign);
+
         return view('pages.upload');
     }
 
