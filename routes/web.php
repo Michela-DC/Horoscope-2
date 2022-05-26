@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Sign;
+use App\Horoscope;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (Sign::count() == 0 || Horoscope::count() == 0)
+        return view('guest.empty');
+
     return view('guest.home');
-});
+})->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/upload', function () {
+        $sign = Sign::count();
 
-Route::get('/upload', 'UploadController@index') ->name('upload.index');
-Route::post('/upload', 'UploadController@store')->name('upload.store');
+        return view('pages.upload', compact('sign'));
+    })->name('upload.index');
+    Route::post('/upload/horoscopes', 'HoroscopeController@store')->name('horoscope.store');
+    Route::post('/upload/signs', 'SignController@store')->name('sign.store');
+});
 
-Route::get('/sign', 'SignController@index') ->name('sign.index');
-Route::post('/sign', 'SignController@store');
-
-Route::fallback(function(){
-
+Route::fallback(function () {
     return view('guest.home');
-
 });

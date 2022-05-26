@@ -16,7 +16,6 @@ class HoroscopeController extends Controller
      */
     public function index(Request $request)
     {
-
         $signs = Sign::query();
 
         $request->validate([
@@ -26,7 +25,6 @@ class HoroscopeController extends Controller
         if($request->has('search') && !empty($request->search)){
             $birthdate = \Carbon\Carbon::createFromFormat('Y-m-d', $request->search)->year(2000);
             $signs->where('date_from', '<', $birthdate)->where('date_to', '>', $birthdate);
-            // dd($signs->get());
         } else {
             return response()->json([
                 'horoscopes' => [], //prendo la relazione 
@@ -38,74 +36,8 @@ class HoroscopeController extends Controller
 
         return response()->json([
             'sign' => $sign->sign,
-            'horoscopes' => $sign->uploads()->with('sign')->paginate(20), //prendo la relazione 
+            'horoscopes' => $sign->uploads()->orderBy('date')->with('sign')->paginate(20), //prendo la relazione 
             'success' => true,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

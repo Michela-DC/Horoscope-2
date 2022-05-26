@@ -28,7 +28,7 @@
                 @if (Route::has('login'))
                 <div>
                     @auth
-                    <a class="text-decoration-none" href="{{ url('/home') }}">Go to admin home</a>
+                    <a class="text-decoration-none" href="{{ url('/upload') }}">Go to upload</a>
                     @else
                     <a class="text-decoration-none mx-3" href="{{ route('login') }}">Login</a>
                     

@@ -9,26 +9,6 @@ use App\Upload;
 class SignController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('pages.upload');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,10 +16,6 @@ class SignController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $upload = Upload::find(1);
-        // dd($upload);
-
         $request->validate([
             'signs-file' => 'required|mimes:csv,txt',
         ]);
@@ -52,12 +28,8 @@ class SignController extends Controller
         $file = fopen($filePath, 'r');
 
 
-        while (($data = fgetcsv($file, 1000, "|")) !== FALSE){
-
-            // dd($data);
-
+        while (($data = fgetcsv($file, 1000, "|")) !== FALSE) {
             if(empty($data[0]) || empty($data[1]) || empty($data[2]) || empty($data[3])){
-
                 continue;
             } 
 
@@ -71,7 +43,7 @@ class SignController extends Controller
             
         }
         
-        return redirect()->route('sign.index')->with('message', 'File uploaded successfully!');
+        return redirect()->route('upload.index')->with('message', 'File uploaded successfully!');
     }
 
     /**
