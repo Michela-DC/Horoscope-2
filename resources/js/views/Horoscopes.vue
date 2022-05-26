@@ -1,53 +1,113 @@
 <template>
-    <div class="container">
-        <div class="searchbar">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <div class="container p-5">
+        <div class="searchbar d-flex justify-content-center mb-4">
+            <form class="form-inline w-50 d-flex">
+                <input v-model="search" class="form-control mr-sm-2 w-70" type="search" placeholder="Search horoscope by date of birth" aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
 
-        <div v-for="horoscope in horoscopes" :key="horoscope.id">
-            <div class="date">
-                <span>Date: </span>
-                {{horoscope.date}}
-            </div>
 
-            <div class="sign">
-                <span>Sign: </span>
-                {{horoscope.sign}}
-            </div>
-
-            <div class="text">
-                {{horoscope.text}}
-            </div>
+        <div v-if="search != ''">
+            <HoroscopeCard v-for="horoscope in filterBySign" :key="horoscope.id" :horoscopeCard="horoscope"/>
         </div>
+
+        <div v-else>
+            <HoroscopeCard v-for="horoscope in horoscopes" :key="horoscope.id" :horoscopeCard="horoscope"/>
+        </div>
+
+        <div class="container w-50">
+            <ul id="itemList" class="myPagination d-flex align-center">
+                <li class="mx-3" style="cursor:pointer" @click="fetchHoroscopes(n)" v-for="n in lastPage" :key="n">{{ n }}</li>
+            </ul>
+        </div>
+
     </div>
 </template>
 
 <script>
+import HoroscopeCard from '../components/HoroscopeCard.vue'
+
     export default {
+        components: {
+            HoroscopeCard,
+        },
+
         data() {
             return {
                 horoscopes: [],
+                lastPage: 0,
+                currentPage: 1,
+                search: "",
             }
         },
 
         methods: {
-            fetchHoroscopes() { 
+            fetchHoroscopes(page = 1) { 
 
-                axios.get('/api/horoscope')
+                axios.get('/api/horoscope', {
+                    params: { 
+                        page
+                    }
+                }) 
                 .then( res => {
-                    // const {horoscopes} = res.data;
-                    console.log(res.data);
+
                     this.horoscopes = res.data.horoscopes.data;
-                    console.log(this.horoscopes);
+                    // console.log(this.horoscopes);
+                    this.currentPage = res.data.horoscopes.current_page;
+                    console.log('pagina', this.currentPage);
+                    this.lastPage = res.data.horoscopes.last_page;
+                    // console.log(this.lastPage);
                     
                 })
                 .catch( error => {
                     console.warn(error);
                 })
-            }
+            },
+
+            filteredHoroscopes (sign){
+                return this.horoscopes.filter((horoscope)=> {
+                    return horoscope.sign.match(sign);
+                })
+            },
+
+        },
+
+        computed: {
+            filterBySign: function(){
+                let day = this.search.substr(0,2);
+                let month = this.search.substr(3,2);
+                console.log(day, month)
+
+                if ((day>=21 && month === '03') || (day<=19 && month === '04')){
+                    console.log('aries')
+                    return this.filteredHoroscopes('aries');
+                }
+
+                if ((day>=20 && month === '04') || (day<=20 && month === '05')){
+                    console.log('taurus')
+                    return this.filteredHoroscopes('taurus');
+
+                }
+
+                if ((day>=21 && month === '05') || (day<=21 && month === '06')){
+                    console.log('gemini')
+                    return this.filteredHoroscopes('gemini');
+
+                }
+
+                if ((day>=22 && month === '06') || (day<=22 && month === '07')){
+                    console.log('cancer')
+                    return this.filteredHoroscopes('cancer');
+
+                }
+
+                if ((day>=23 && month === '07') || (day<=22 && month === '08')){
+                    console.log('leo')
+                    return this.filteredHoroscopes('leo');
+
+                }
+            },
         },
 
         mounted() {
@@ -58,5 +118,9 @@
 </script>
 
 <style lang="scss" scoped>
+
+.myPagination{
+    overflow-x: scroll;
+}
 
 </style>
