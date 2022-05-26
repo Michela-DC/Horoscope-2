@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Upload extends Model
 {
-    public function category() {
-        return $this->belongsTo('App\Sign');
+    public function signs() {
+        return $this->belongsToMany('App\Sign');
     }
 }

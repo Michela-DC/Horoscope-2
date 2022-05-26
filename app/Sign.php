@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sign extends Model
 {
-    public function category() {
-        return $this->belongsTo('App\Upload');
+    public function uploads() {
+        return $this->belongsToMany('App\Upload');
     }
 }

@@ -55,7 +55,7 @@ import HoroscopeCard from '../components/HoroscopeCard.vue'
                     this.horoscopes = res.data.horoscopes.data;
                     // console.log(this.horoscopes);
                     this.currentPage = res.data.horoscopes.current_page;
-                    console.log('pagina', this.currentPage);
+                    // console.log(this.currentPage);
                     this.lastPage = res.data.horoscopes.last_page;
                     // console.log(this.lastPage);
                     
