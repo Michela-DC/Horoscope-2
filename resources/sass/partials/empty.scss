@@ -1,0 +1,21 @@
+.main-container{
+    height: 100vh;
+    background-image: url('https://astrozanoni.co.uk/wp-content/uploads/2019/12/Wheel-Of-Zodiac.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    .main-row{
+        background:rgba(255,255,255, 0.8);
+        color: darkgoldenrod;
+
+        .login-container{
+            font-size: 1.5em;
+
+            a:hover{
+                color: crimson;
+            }
+        }
+    }
+    
+}

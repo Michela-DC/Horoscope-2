@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;
 
-/*!
- * Bootstrap v5.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+700&display=swap);@charset "UTF-8";
 
 :root {
   --bs-blue: #3490dc;
@@ -12178,10 +12173,32 @@ fieldset:disabled .btn {
   }
 }
 
+.main-container {
+  height: 100vh;
+  background-image: url("https://astrozanoni.co.uk/wp-content/uploads/2019/12/Wheel-Of-Zodiac.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.main-container .main-row {
+  background: rgba(255, 255, 255, 0.8);
+  color: darkgoldenrod;
+}
+
+.main-container .main-row .login-container {
+  font-size: 1.5em;
+}
+
+.main-container .main-row .login-container a:hover {
+  color: crimson;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lato", sans-serif;
 }
 
 li {
