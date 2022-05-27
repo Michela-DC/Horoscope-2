@@ -26,17 +26,27 @@
         <div class="container">
             <div class="login-container text-end mb-3 mx-3">
                 @if (Route::has('login'))
-                <div>
-                    @auth
-                    <a class="text-decoration-none" href="{{ url('/upload') }}">Go to upload</a>
-                    @else
-                    <a class="text-decoration-none mx-3" href="{{ route('login') }}">Login</a>
-                    
-                    @if (Route::has('register'))
-                    <a class="text-decoration-none" href="{{ route('register') }}">Register</a>
-                    @endif
-                    @endauth
-                </div>
+                    <div>
+                        @auth
+                            <a class="text-decoration-none mx-3" href="{{ url('/upload') }}">Go to upload</a>
+
+                            <a style="text-decoration: none" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
+                        @else
+                            <a class="text-decoration-none mx-3" href="{{ route('login') }}">Login</a>
+                        
+                        @if (Route::has('register'))
+                            <a class="text-decoration-none" href="{{ route('register') }}">Register</a>
+                        @endif
+                        @endauth
+                    </div>
                 @endif
             </div>
         </div>

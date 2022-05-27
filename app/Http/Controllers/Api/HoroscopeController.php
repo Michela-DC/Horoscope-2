@@ -17,21 +17,23 @@ class HoroscopeController extends Controller
     public function index(Request $request)
     {
         $signs = Sign::query();
-
+        
         $request->validate([
             'search' => 'nullable|date_format:Y-m-d',
         ]);
-
+        
         if($request->has('search') && !empty($request->search)){
             $birthdate = \Carbon\Carbon::createFromFormat('Y-m-d', $request->search)->year(2000);
-            $signs->where('date_from', '<', $birthdate)->where('date_to', '>', $birthdate);
+            $signs->where('date_from', '<=', $birthdate)->where('date_to', '>=', $birthdate);
 
         } else {
             return response()->json([
-                'horoscopes' => [], //prendo la relazione 
+                'horoscopes' => [],  
                 'success' => true,
             ]);
         }
+
+        // dd($signs->toSql());
 
         $sign = $signs->first();
 
