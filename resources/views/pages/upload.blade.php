@@ -16,7 +16,7 @@
             @csrf
 
             <div class="form-group">
-                <h4 class="mb-3">Upload here your <span style="text-decoration:underline;" class="">signs</span> file: </h4>
+                <h3 class="mb-3">Upload here your <span style="text-decoration:underline;" class="">signs</span> file: </h3>
 
                 <div class="form-group bg-white mb-4">
                     <input id="signs-file" type="file" name="signs-file" class="@error('signs-file') is-invalid @enderror">
@@ -42,7 +42,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <h4 class="mb-3">Upload here your <span style="text-decoration:underline;">horoscopes</span> file: </h4>
+                    <h3 class="mb-3">Upload here your <span style="text-decoration:underline;">horoscopes</span> file: </h3>
 
                     <div class="form-group bg-white mb-4">
                         <input id="horoscopes-file" type="file" name="horoscopes-file" class="@error('horoscopes-file') is-invalid @enderror">

@@ -24,9 +24,9 @@
 
     <main class="main-container">
         <div class="main-row d-flex flex-column align-items-center justify-content-center h-100 w-100">
-            <h2 class="mb-4">You still have to upload your horoscopes!</h2>
+            <h2 class="mb-4">There are no files uploaded</h2>
     
-            <h4 class="mb-4">Login/register to upload:</h4>
+            <h4 class="mb-4">Login/register to upload</h4>
     
             <div class="login-container">
                 @if (Route::has('login'))

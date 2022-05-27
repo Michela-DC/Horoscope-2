@@ -1,12 +1,10 @@
 <template>
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center">
 
-        <div class="search-row d-flex justify-content-center mb-5">
-            <form class="form-inline w-50 d-flex flex-column align-items-center">
-                <label for="search-date" class="mb-2">Insert your date of birth:</label>
-                <input id="search-date" v-model="search" class="form-control mr-sm-2 w-50 border border-primary" type="date" aria-label="Search" name="date">
-            </form>
-        </div>
+        <form class="form-inline search-row mb-5">
+            <label for="search-date" class="search-label mb-3">Insert your date of birth: </label>
+            <input id="search-date" v-model="search" class="form-control mr-sm-2 border border-primary" type="date" aria-label="Search" name="date">
+        </form>
 
         <h4 v-if="totalRows != 0 && lastPage != 1" class="row d-flex justify-content-center mb-5">Your sign is {{sign}} {{sign_icon}} </h4>
 
@@ -14,7 +12,7 @@
             <HoroscopeCard v-for="horoscope in horoscopes" :key="horoscope.id" :horoscopeCard="horoscope"/>
         </div>
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-5">
             <b-pagination
                 v-if="totalRows != 0 && lastPage != 1"
                 v-model="currentPage"
@@ -93,7 +91,6 @@ import HoroscopeCard from '../components/HoroscopeCard.vue'
 
 .search-row{
     font-size: 1.3em;
-    border-radius: 10px;
 }
 
 .horoscopes-row{

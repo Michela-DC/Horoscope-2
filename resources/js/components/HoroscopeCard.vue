@@ -41,12 +41,12 @@ import moment from 'moment'
 
 .horoscope-card{
     background-color: white;
-    border: 3px solid #ffd199;
+    border: 3px solid #ffc680;
     // box-shadow: 0px 0px 4px #e69500;
     padding: 0;
 
     .date-wrapper, .sign-wrapper{
-        background-color: #ffd199;
+        background-color: #ffc680;
 
         .info-name{
             color: crimson;
