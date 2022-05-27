@@ -20,17 +20,26 @@
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<style>
+    .horoscope-header{
+        background-color: #FFFAFA;
+    }
 
-    <header class="pt-4 pb-2">
+    .logout-anchor{
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <header class="horoscope-header py-3 mb-5">
         <div class="container">
-            <div class="login-container text-end mb-3 mx-3">
+            <div class="login-container text-end mx-3">
                 @if (Route::has('login'))
                     <div>
                         @auth
                             <a class="text-decoration-none mx-3" href="{{ url('/upload') }}">Go to upload</a>
 
-                            <a style="text-decoration: none" href="{{ route('logout') }}"
+                            <a class="logout-anchor" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

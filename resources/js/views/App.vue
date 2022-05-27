@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="main-title text-center mb-5">Welcome to your daily horoscope!</h1>
+        <h1 class="main-title text-center mb-5">Welcome to your horoscope!</h1>
         <Horoscopes/>
     </div>
 </template>
